@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<asset assetType="farmingLocationQuestData" questTooltipFlags="Completed" questType="Building">
+	<!--hs: 1-->
+	<!--quests: 3-->
+	<!--rev: 2-->
+	<!--vars_context_provider: 1-->
+	<activate type="boolAnd">
+		<ptr>
+			<conditions type="eventStateConditionValue">
+				<ptr eventId="FarmLocation4">
+					<states _v_="InProgress" />
+				</ptr>
+			</conditions>
+			<conditions type="farmingLocationContextBoolValue">
+				<ptr name="Farm_IsInCluster" />
+			</conditions>
+			<conditions type="questInStateCondition">
+				<ptr state="Closed">
+					<quest id="00_Farm4_Start_Quest" id..editor..ref="assetType@questTemplateData" />
+				</ptr>
+			</conditions>
+		</ptr>
+	</activate>
+	<close type="boolOr">
+		<ptr>
+			<conditions type="triggerCondition">
+				<ptr onceTrigger="true" trigger="Farm4_BuildWorkbench_Close" />
+			</conditions>
+			<conditions type="triggerCondition">
+				<ptr trigger="Farm4_SessionStart" />
+			</conditions>
+		</ptr>
+	</close>
+	<complete type="boolAnd">
+		<ptr>
+			<conditions type="farmingLocationContextBoolValue">
+				<ptr name="Farm_IsInCluster" />
+			</conditions>
+			<conditions type="Farm.InteractionCondition">
+				<ptr objectId="faddc9b8" onceInteraction="true" />
+			</conditions>
+		</ptr>
+	</complete>
+	<context type="varsContext">
+		<ptr>
+			<nested type="contextAssetProvider">
+				<ptr>
+					<asset id="Farm4_GlobalContext" id..editor..ref="assetType@variablesContextAsset" />
+				</ptr>
+			</nested>
+			<nested type="contextAssetProvider">
+				<ptr>
+					<asset id="QuestContext" id..editor..ref="assetType@variablesContextAsset" />
+				</ptr>
+			</nested>
+			<nested type="contextAssetProvider">
+				<ptr>
+					<asset id="Farm4_InventoryContext" id..editor..ref="assetType@variablesContextAsset" />
+				</ptr>
+			</nested>
+		</ptr>
+	</context>
+	<dataContext type="varsContext">
+		<ptr>
+			<values type="stringVariable">
+				<ptr name="title" value="JohnDoe" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="description" value="Test1" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="tabletIcon" value="Farm4_UI_Quest_sawmill_icon" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestIconId" value="Farm4_UI_Quest_sawmill_icon" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestIconActive" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestIconCompleted" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="TextId" value="Farm4LabelDecorWorkbench" />
+			</values>
+			<values type="boolVariable">
+				<ptr name="QuestLocationWaypointOnly" />
+			</values>
+			<values type="integerNumberVariable">
+				<ptr name="GoalCount" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="GoalCount_Str" />
+			</values>
+			<values type="integerNumberVariable">
+				<ptr name="GoalRequired" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="GoalRequired_Str" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="GoalName" />
+			</values>
+			<values type="integerNumberVariable">
+				<ptr name="QuestLocationsCount" value="1" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestLocation1" value="faddc9b8" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestShowPathIcsName" value="Farm4_OpenUpgradeBuildingWindow" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestType" value="Building" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestTitle" value="BuildCarpentry" />
+			</values>
+		</ptr>
+	</dataContext>
+	<graphPosition x="-1032.84" y="-2916.8" />
+	<onActivate type="forceUpdateTooltips">
+		<ptr />
+	</onActivate>
+	<onClose type="forceUpdateQuestsAction">
+		<ptr />
+	</onClose>
+	<onClose type="forceUpdateTooltips">
+		<ptr />
+	</onClose>
+	<onComplete type="Farm.SwitchObjectStepAction">
+		<ptr repairId="rz1_ground_workshop" stepId="new" />
+	</onComplete>
+	<onComplete type="queueQuestAction">
+		<ptr onEndTrigger="Farm4_BuildWorkbench_Close">
+			<queueActions type="Farm.RequiredQueueQuestActionWrapper">
+				<ptr uniqueActionId="29122023-134659-4WmF8lAeSynNzA9Z">
+					<eventRef eventId="FarmLocation4" />
+					<requiredAction type="farmingLocationIncreaseExperienceAction">
+						<ptr experienceScores="100">
+							<eventRef eventId="FarmLocation4" />
+						</ptr>
+					</requiredAction>
+					<startConditionAsset id="Farm4_IncreaseScoreNotActiveCondition" id..editor..ref="assetType@conditionAsset" />
+				</ptr>
+			</queueActions>
+			<queueActions type="Farm.RequiredQueueQuestActionWrapper">
+				<ptr uniqueActionId="03012024-205113-RVqdVJyUGKrst3PC">
+					<eventRef eventId="FarmLocation4" />
+					<requiredAction type="startScreenplayQuestAction">
+						<ptr canRestart="false" optional="false" waitForStableGarden="false">
+							<screenplayGroup groupId="Farm4">
+								<settings clusterId="clusterFarm4" screenplayId="Farm4_FixWorkbench" />
+							</screenplayGroup>
+						</ptr>
+					</requiredAction>
+					<startConditionAsset id="Farm4_ScreenplayActivatePermissionCondition" id..editor..ref="assetType@conditionAsset" />
+				</ptr>
+			</queueActions>
+		</ptr>
+	</onComplete>
+	<onComplete type="saveCurrentState">
+		<ptr />
+	</onComplete>
+	<parentQuests id="00_Farm4_Start_Quest" id..editor..ref="assetType@questTemplateData" />
+</asset>
