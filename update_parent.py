@@ -14,9 +14,9 @@ os.makedirs(output_dir, exist_ok=True)
 excel_file = 'quest_data.xlsx'  # Your Excel file name
 df = pd.read_excel(excel_file)
 
-# Assuming the Excel file has columns named 'new_title' and 'xml_file'
-# 'new_title' contains the new quest titles and 'xml_file' contains the names of the XML files
-titles = df['new_title']
+# Assuming the Excel file has columns named 'new_title' and 'Name'
+# 'new_title' contains the new quest titles and 'Name' contains the names of the XML files
+titles = df['ParentQuest']
 xml_files = df['NameXml']
 
 # Iterate through each title and corresponding XML file
@@ -33,10 +33,14 @@ for new_title, xml_filename in zip(titles, xml_files):
     parser = etree.XMLParser(remove_blank_text=False)
     tree = etree.parse(xml_file_path, parser)
     root = tree.getroot()
+    old_id = "REPLACEME_ParentQuestID"
 
     # Find the <ptr> element with the name attribute set to "title" and update its value
-    for ptr in root.xpath(".//ptr[@name='title']"):
-        ptr.attrib['value'] = new_title
+    for parentQuests in root.xpath("parentQuests"):
+        parentQuests.attrib['id'] = new_title  
+
+    for quest in root.findall(".//quest"):
+            quest.set('id', new_title)
 
     # Convert the XML tree to a string
     xml_str = etree.tostring(tree, pretty_print=True, xml_declaration=False, encoding='unicode')
