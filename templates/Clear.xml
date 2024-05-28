@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<asset assetType="farmingLocationQuestData" questTooltipFlags="Active|Completed" questType="CleanArea">
+	<!--hs: 1-->
+	<!--quests: 3-->
+	<!--rev: 2-->
+	<!--vars_context_provider: 1-->
+	<activate type="boolAnd">
+		<ptr>
+			<conditions type="eventStateConditionValue">
+				<ptr eventId="FarmLocation4">
+					<states _v_="InProgress" />
+				</ptr>
+			</conditions>
+			<conditions type="farmingLocationContextBoolValue">
+				<ptr name="Farm_IsInCluster" />
+			</conditions>
+			<conditions type="questInStateCondition">
+				<ptr state="Closed">
+					<quest id="Farm4_GroupComplete1_REPLACEME" id..editor..ref="assetType@questTemplateData" />
+				</ptr>
+			</conditions>
+		</ptr>
+	</activate>
+	<close type="boolOr">
+		<ptr>
+			<conditions type="triggerCondition">
+				<ptr onceTrigger="true" trigger="Farm4_ClearSawmillArea_Close_REPLACEME" />
+			</conditions>
+			<conditions type="triggerCondition">
+				<ptr trigger="Farm4_SessionStart" />
+			</conditions>
+		</ptr>
+	</close>
+	<complete type="boolAnd">
+		<ptr>
+			<conditions type="farmingLocationContextBoolValue">
+				<ptr name="Farm_IsInCluster" />
+			</conditions>
+			<conditions type="Farm.GroupObjectRemovedCondition">
+				<ptr>
+					<objectIds objectId="rz1_res_grass2_8_REPLACEME" />
+					<objectIds objectId="rz1_res_metal_7_REPLACEME" />
+				</ptr>
+			</conditions>
+		</ptr>
+	</complete>
+	<context type="varsContext">
+		<ptr>
+			<nested type="contextAssetProvider">
+				<ptr>
+					<asset id="Farm4_GlobalContext" id..editor..ref="assetType@variablesContextAsset" />
+				</ptr>
+			</nested>
+			<nested type="contextAssetProvider">
+				<ptr>
+					<asset id="QuestContext" id..editor..ref="assetType@variablesContextAsset" />
+				</ptr>
+			</nested>
+			<nested type="contextAssetProvider">
+				<ptr>
+					<asset id="Farm4_InventoryContext" id..editor..ref="assetType@variablesContextAsset" />
+				</ptr>
+			</nested>
+		</ptr>
+	</context>
+	<dataContext type="varsContext">
+		<ptr>
+			<values type="stringVariable">
+				<ptr name="title" value="Farm4_quest21_REPLACEME" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="description" value="Test1" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="tabletIcon" value="Farm3_UI_Quest_clear_site_icon_REPLACEME" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestIconId" value="Farm3_UI_Quest_clear_site_icon_REPLACEME" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestIconActive" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestIconCompleted" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="TextId" value="YouAreBannedText_REPLACEME" />
+			</values>
+			<values type="boolVariable">
+				<ptr name="QuestLocationWaypointOnly" />
+			</values>
+			<values type="integerNumberVariable">
+				<ptr name="GoalCount" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="GoalCount_Str" />
+			</values>
+			<values type="integerNumberVariable">
+				<ptr name="GoalRequired" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="GoalRequired_Str" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="GoalName" />
+			</values>
+			<values type="integerNumberVariable">
+				<ptr name="QuestLocationsCount" value="6" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestLocation1" value="rz1_res_grass2_8_REPLACEME" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestLocation2" value="rz1_res_metal_7_REPLACEME" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestType" value="CleanArea" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestTitle" value="ClearSpaceForCatapult_REPLACEME" />
+			</values>
+			<values type="integerNumberVariable">
+				<ptr name="ObjectsRemovedCount" />
+			</values>
+		</ptr>
+	</dataContext>
+	<graphPosition x="-1393.61" y="646.578" />
+	<onActivate type="queueQuestAction">
+		<ptr customLocation="FarmingLocation">
+			<queueActions type="forceUpdateTooltips">
+				<ptr />
+			</queueActions>
+		</ptr>
+	</onActivate>
+	<onClose type="forceUpdateQuestsAction">
+		<ptr />
+	</onClose>
+	<onClose type="forceUpdateTooltips">
+		<ptr />
+	</onClose>
+	<onComplete type="queueQuestAction">
+		<ptr onEndTrigger="Farm4_ClearSawmillArea_Close_REPLACEME">
+			<queueActions type="Farm.RequiredQueueQuestActionWrapper">
+				<ptr uniqueActionId="29122023-134707-vqzDiXA1mtRcKk8S">
+					<eventRef eventId="FarmLocation4" />
+					<requiredAction type="farmingLocationIncreaseExperienceAction">
+						<ptr experienceScores="10_REPLACEME">
+							<eventRef eventId="FarmLocation4" />
+						</ptr>
+					</requiredAction>
+					<startConditionAsset id="Farm4_IncreaseScoreNotActiveCondition" id..editor..ref="assetType@conditionAsset" />
+				</ptr>
+			</queueActions>
+			<queueActions type="Farm.RequiredQueueQuestActionWrapper">
+				<ptr uniqueActionId="29122023-134700-kZ4z50YuZjUuNQy8">
+					<eventRef eventId="FarmLocation4" />
+					<requiredAction type="startScreenplayQuestAction">
+						<ptr canRestart="false" optional="false" waitForStableGarden="false">
+							<screenplayGroup groupId="Farm4">
+								<settings clusterId="clusterFarm4" screenplayId="" />
+							</screenplayGroup>
+						</ptr>
+					</requiredAction>
+					<startConditionAsset id="Farm4_ScreenplayActivatePermissionCondition" id..editor..ref="assetType@conditionAsset" />
+				</ptr>
+			</queueActions>
+		</ptr>
+	</onComplete>
+	<onComplete type="saveCurrentState">
+		<ptr />
+	</onComplete>
+	<parentQuests id="Farm4_GroupComplete1" id..editor..ref="assetType@questTemplateData" />
+</asset>

@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<asset assetType="farmingLocationQuestData" questTooltipFlags="Active|Completed" questType="StartCraft">
+	<!--hs: 1-->
+	<!--quests: 3-->
+	<!--rev: 2-->
+	<!--vars_context_provider: 1-->
+	<activate type="boolAnd">
+		<ptr>
+			<conditions type="eventStateConditionValue">
+				<ptr eventId="FarmLocation4">
+					<states _v_="InProgress" />
+				</ptr>
+			</conditions>
+			<conditions type="farmingLocationContextBoolValue">
+				<ptr name="Farm_IsInCluster" />
+			</conditions>
+			<conditions type="questInStateCondition">
+				<ptr state="Closed">
+					<quest id="12_Farm4_CollectCoffe_REPLACEME" id..editor..ref="assetType@questTemplateData" />
+				</ptr>
+			</conditions>
+		</ptr>
+	</activate>
+	<close type="boolOr">
+		<ptr>
+			<conditions type="triggerCondition">
+				<ptr onceTrigger="true" trigger="Farm4_CraftCoffe_Close_REPLACEME" />
+			</conditions>
+			<conditions type="triggerCondition">
+				<ptr trigger="Farm4_SessionStart" />
+			</conditions>
+		</ptr>
+	</close>
+	<complete type="boolAnd">
+		<ptr>
+			<conditions type="farmingLocationContextBoolValue">
+				<ptr name="Farm_IsInCluster" />
+			</conditions>
+			<conditions type="boolOr">
+				<ptr>
+					<conditions type="craftInteractionCondition">
+						<ptr onceInteraction="true">
+							<recipe id="Farm4_Coffee_REPLACEME" id..editor..ref="assetType@recipeAsset" />
+						</ptr>
+					</conditions>
+					<conditions type="farmingLocationCraftCondition">
+						<ptr recipeState="Queue|Craft">
+							<recipe id="Farm4_Coffee_REPLACEME" id..editor..ref="assetType@recipeAsset" />
+						</ptr>
+					</conditions>
+				</ptr>
+			</conditions>
+		</ptr>
+	</complete>
+	<context type="varsContext">
+		<ptr>
+			<nested type="contextAssetProvider">
+				<ptr>
+					<asset id="Farm4_GlobalContext" id..editor..ref="assetType@variablesContextAsset" />
+				</ptr>
+			</nested>
+			<nested type="contextAssetProvider">
+				<ptr>
+					<asset id="QuestContext" id..editor..ref="assetType@variablesContextAsset" />
+				</ptr>
+			</nested>
+			<nested type="contextAssetProvider">
+				<ptr>
+					<asset id="Farm4_InventoryContext" id..editor..ref="assetType@variablesContextAsset" />
+				</ptr>
+			</nested>
+		</ptr>
+	</context>
+	<dataContext type="varsContext">
+		<ptr>
+			<values type="stringVariable">
+				<ptr name="title" value="Farm4_quest13_REPLACEME" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="description" value="Test1" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="tabletIcon" value="Farm3_UI_Quest_wooden_axe_icon_REPLACEME" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestIconId" value="Farm3_UI_Quest_wooden_axe_icon_REPLACEME" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestIconActive" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestIconCompleted" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="TextId" value="YouAreBannedText" />
+			</values>
+			<values type="boolVariable">
+				<ptr name="QuestLocationWaypointOnly" />
+			</values>
+			<values type="integerNumberVariable">
+				<ptr name="GoalCount" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="GoalCount_Str" value="0" />
+			</values>
+			<values type="integerNumberVariable">
+				<ptr name="GoalRequired" value="1" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="GoalRequired_Str" value="1" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="GoalName" value="Farm4_Coffee_REPLACEME" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestLocationCraftRecipe" value="Farm4_Coffee_REPLACEME" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestLocation1" value="9d9fc71c_REPLACEME" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestType" value="StartCraft" />
+			</values>
+			<values type="stringVariable">
+				<ptr name="QuestTitle" value="CraftBeaters_REPLACEME" />
+			</values>
+		</ptr>
+	</dataContext>
+	<graphPosition x="-1048.67" y="-888.078" />
+	<onActivate type="forceUpdateTooltips">
+		<ptr />
+	</onActivate>
+	<onClose type="forceUpdateQuestsAction">
+		<ptr />
+	</onClose>
+	<onClose type="forceUpdateTooltips">
+		<ptr />
+	</onClose>
+	<onComplete type="queueQuestAction">
+		<ptr customLocation="FarmingLocation" onEndTrigger="Farm4_CraftCoffe_Close_REPLACEME">
+			<queueActions type="Farm.RequiredQueueQuestActionWrapper">
+				<ptr uniqueActionId="29122023-134700-F50T0ryiKiFmfkWL">
+					<eventRef eventId="FarmLocation4" />
+					<requiredAction type="farmingLocationIncreaseExperienceAction">
+						<ptr experienceScores="15">
+							<eventRef eventId="FarmLocation4" />
+						</ptr>
+					</requiredAction>
+					<startConditionAsset id="Farm4_IncreaseScoreNotActiveCondition" id..editor..ref="assetType@conditionAsset" />
+				</ptr>
+			</queueActions>
+			<queueActions type="Farm.RequiredQueueQuestActionWrapper">
+				<ptr uniqueActionId="29122023-134700-kZ4z50YuZjUuNQy8">
+					<eventRef eventId="FarmLocation4" />
+					<requiredAction type="startScreenplayQuestAction">
+						<ptr canRestart="false" optional="false" waitForStableGarden="false">
+							<screenplayGroup groupId="Farm4">
+								<settings clusterId="clusterFarm4" screenplayId="Farm4_StartMakingCoffee_REPLACEME" />
+							</screenplayGroup>
+						</ptr>
+					</requiredAction>
+					<startConditionAsset id="Farm4_ScreenplayActivatePermissionCondition" id..editor..ref="assetType@conditionAsset" />
+				</ptr>
+			</queueActions>
+		</ptr>
+	</onComplete>
+	<onComplete type="saveCurrentState">
+		<ptr />
+	</onComplete>
+	<parentQuests id="12_Farm4_CollectCoffe" id..editor..ref="assetType@questTemplateData" />
+</asset>
