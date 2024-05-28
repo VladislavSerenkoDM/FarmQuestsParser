@@ -1,16 +1,36 @@
 import pandas as pd
 from lxml import etree
+import os
 
-def update_quest_title(excel_file, xml_file, output_file):
-    # Read the new quest title from an Excel file
-    df = pd.read_excel(excel_file)
+# Define the input and output directories
+input_dir = 'input'  # Directory containing the original XML files
+output_dir = 'output'  # Directory to save the updated XML files
 
-    # Assuming the Excel file has a column named 'new_title' with the new quest titles
-    new_title = df['new_title'].iloc[0]  # Get the first title from the Excel file
+# Create the output directory if it doesn't exist
+os.makedirs(output_dir, exist_ok=True)
+
+# Read the new quest titles and corresponding XML filenames from the Excel file
+excel_file = 'quest_titles.xlsx'  # Your Excel file name
+df = pd.read_excel(excel_file)
+
+# Assuming the Excel file has columns named 'new_title' and 'xml_file'
+# 'new_title' contains the new quest titles and 'xml_file' contains the names of the XML files
+titles = df['new_title']
+xml_files = df['xml_file']
+
+# Iterate through each title and corresponding XML file
+for new_title, xml_filename in zip(titles, xml_files):
+    # Construct the full path to the XML file in the input directory
+    xml_file_path = os.path.join(input_dir, xml_filename)
+    
+    # Check if the XML file exists in the input directory
+    if not os.path.exists(xml_file_path):
+        print(f"File {xml_file_path} does not exist.")
+        continue
 
     # Load and parse the XML file
     parser = etree.XMLParser(remove_blank_text=False)
-    tree = etree.parse(xml_file, parser)
+    tree = etree.parse(xml_file_path, parser)
     root = tree.getroot()
 
     # Find the <ptr> element with the name attribute set to "title" and update its value
@@ -23,18 +43,16 @@ def update_quest_title(excel_file, xml_file, output_file):
     # Manually add a space before the self-closing tag '/>'
     xml_str = xml_str.replace('/>', ' />')
 
-    # Write the updated XML to a new file, preserving the desired format
-    with open(output_file, 'w', encoding='utf-8') as file:
+    # Construct the full path to the updated XML file in the output directory
+    updated_xml_file_path = os.path.join(output_dir, xml_filename)
+    
+    # Write the updated XML to the new file in the output directory, preserving the desired format
+    with open(updated_xml_file_path, 'w', encoding='utf-8') as file:
         # Write the XML declaration manually
         file.write('<?xml version="1.0"?>\n')
         # Write the rest of the XML content
         file.write(xml_str)
 
-    print(f"The quest title has been updated to '{new_title}' in '{output_file}'.")
+    print(f"The quest title has been updated to '{new_title}' in '{updated_xml_file_path}'.")
 
-if __name__ == "__main__":
-    import sys
-    if len(sys.argv) != 4:
-        print("Usage: python update_quest.py <excel_file> <xml_file> <output_file>")
-    else:
-        update_quest_title(sys.argv[1], sys.argv[2], sys.argv[3])
+print("All quest titles have been updated.")

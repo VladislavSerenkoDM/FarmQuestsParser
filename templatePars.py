@@ -17,11 +17,12 @@ os.makedirs(input_dir, exist_ok=True)
 
 # Mapping quest types to template files
 quest_type_to_template = {
-    'Build': 'Build.xml',
-    'type_2': 'quest_type_2.xml',
-    'type_3': 'quest_type_3.xml',
-    'type_4': 'quest_type_4.xml',
-    'type_5': 'quest_type_5.xml',
+    'BuildDecor': 'Build.xml',
+    'BuildWorkshop': 'Build.xml',
+    'Clear': 'Clear.xml',
+    'Collect': 'Collect.xml',
+    'StartCraft': 'StartCraft.xml',
+    'CraftResources': 'Craft.xml',
 }
 
 # Process each row in the dataframe
