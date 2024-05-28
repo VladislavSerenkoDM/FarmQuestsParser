@@ -34,9 +34,23 @@ for new_title, xml_filename in zip(titles, xml_files):
     tree = etree.parse(xml_file_path, parser)
     root = tree.getroot()
 
+
+    '''
+    ___________________Searching and replacing values block___________________
+
+    '''
+
+
     # Find the <ptr> element with the name attribute set to "title" and update its value
     for ptr in root.xpath(".//ptr[@name='title']"):
         ptr.attrib['value'] = new_title
+
+
+    '''
+    ___________________Preserving the Look of the Source XML file___________________
+
+    '''
+    
 
     # Convert the XML tree to a string
     xml_str = etree.tostring(tree, pretty_print=True, xml_declaration=False, encoding='unicode')

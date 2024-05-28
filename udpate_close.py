@@ -16,8 +16,9 @@ df = pd.read_excel(excel_file)
 
 # Assuming the Excel file has columns named 'new_title' and 'NameXml'
 # 'ParentQuest' contains the new quest titles and 'NameXml' contains the names of the XML files
-titles = df['ParentQuest']
+titles = df['CloseQuest']
 xml_files = df['NameXml']
+
 
 # Iterate through each title and corresponding XML file
 for new_title, xml_filename in zip(titles, xml_files):
@@ -33,20 +34,26 @@ for new_title, xml_filename in zip(titles, xml_files):
     parser = etree.XMLParser(remove_blank_text=False)
     tree = etree.parse(xml_file_path, parser)
     root = tree.getroot()
-    
-    
+
+   
     '''
     ___________________Searching and replacing values block___________________
 
     '''
 
-
-    # Find the <ptr> element with the name attribute set to "title" and update its value
-    for parentQuests in root.xpath("parentQuests"):
-        parentQuests.attrib['id'] = new_title  
-
-    for quest in root.findall(".//quest"):
-            quest.set('id', new_title)
+    
+    # Find the <ptr> element with the name attribute set to "onceTrigger" and update its value
+    for ptr in root.xpath(".//ptr[@onceTrigger='true']"):
+        ptr.attrib['trigger'] = new_title
+        
+    # Iterate over all elements in the XML tree to find onEndTrigger attribute
+    for elem in root.iter():
+        # Iterate over all attributes of the element
+        for attr_name, attr_value in elem.attrib.items():
+            # Check if the attribute value matches the old_value
+            if attr_name == 'onEndTrigger':
+                # Replace the attribute value with the new_value
+                elem.set(attr_name, new_title)
 
 
     '''
