@@ -19,14 +19,15 @@ df = pd.read_excel(excel_file)
 # and 'Resource' indicates whether the XML file should be processed
 titles = df['Amount']
 xml_files = df['NameXml']
-resources = df['Craft']
-workshop = df['Workshop']
+UiD = df['UiD_Old']
+ground = df['SwitchObject']
+
 
 # Iterate through each title and corresponding XML file
-for new_title, xml_filename, resource, workshop in zip(titles, xml_files, resources, workshop):
+for new_title, xml_filename, resource, ground  in zip(titles, xml_files, UiD, ground):
     # Skip rows where 'Resource' is empty
     if pd.isna(resource):
-        print(f"Skipping file '{xml_filename}' because 'Craft' is empty.")
+        print(f"Skipping file '{xml_filename}' because 'UiD_Old' is empty.")
         continue
     
     # Construct the full path to the XML file in the input directory
@@ -48,26 +49,15 @@ for new_title, xml_filename, resource, workshop in zip(titles, xml_files, resour
 
     '''
 
-    new_title = int(new_title)
-    new_title = str(new_title)
+ 
+    resource = str(resource)
+    ground = str(ground)
     
     # Find the <ptr> element with the name attribute set to "onceTrigger" and update its value
     #    ___________________Data Context___________________
 
-    for ptr in root.xpath(".//ptr[@name='GoalRequired']"):
-        ptr.attrib['value'] = new_title
-        
-    for ptr in root.xpath(".//ptr[@name='GoalRequired_Str']"):
-        ptr.attrib['value'] = new_title
-
-    for ptr in root.xpath(".//ptr[@name='GoalName']"):
-        ptr.attrib['value'] = resource        
-
-    for ptr in root.xpath(".//ptr[@name='QuestLocationCraftRecipe']"):
-        ptr.attrib['value'] = resource   
-
     for ptr in root.xpath(".//ptr[@name='QuestLocation1']"):
-        ptr.attrib['value'] = workshop           
+        ptr.attrib['value'] = resource           
 
     # Iterate over all elements in the XML tree to find onEndTrigger attribute
     #    ___________________Complete___________________
@@ -76,17 +66,9 @@ for new_title, xml_filename, resource, workshop in zip(titles, xml_files, resour
         # Iterate over all attributes of the element
         for attr_name, attr_value in elem.attrib.items():
             # Check if the attribute value matches the old_value
-            if attr_name == 'goalName':
+            if attr_name == 'objectId':
                 # Replace the attribute value with the new_value
                 elem.set(attr_name, resource)
-
-    for elem in root.iter():
-    # Iterate over all attributes of the element
-        for attr_name, attr_value in elem.attrib.items():
-            # Check if the attribute value matches the old_value
-            if attr_name == 'requiredValue':
-                # Replace the attribute value with the new_value
-                elem.set(attr_name, new_title)
 
     # Iterate over all elements in the XML tree to find onEndTrigger attribute
     #    ___________________Complete_For_StartCraft___________________
@@ -94,7 +76,13 @@ for new_title, xml_filename, resource, workshop in zip(titles, xml_files, resour
     for quest in root.findall(".//recipe"):
             quest.set('id', resource)
 
-
+    for elem in root.iter():
+    # Iterate over all attributes of the element
+        for attr_name, attr_value in elem.attrib.items():
+            # Check if the attribute value matches the old_value
+            if attr_name == 'repairId':
+                # Replace the attribute value with the new_value
+                elem.set(attr_name, ground)
 
     '''
     ___________________Preserving the Look of the Source XML file___________________

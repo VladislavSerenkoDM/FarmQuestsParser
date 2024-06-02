@@ -110,9 +110,6 @@
 			<values type="stringVariable">
 				<ptr name="QuestTitle" value="CollectLogsForCatapult_REPLACEME" />
 			</values>
-			<values type="stringVariable">
-				<ptr name="GoalName" />
-			</values>
 		</ptr>
 	</dataContext>
 	<graphPosition x="-1316.76" y="-1473.99" />
