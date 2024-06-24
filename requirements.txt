@@ -1,0 +1,5 @@
+pandas
+gspread
+Python 3.9+
+openpyxl
+lxml

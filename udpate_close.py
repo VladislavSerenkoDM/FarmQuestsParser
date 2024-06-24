@@ -14,10 +14,10 @@ os.makedirs(output_dir, exist_ok=True)
 excel_file = 'quest_data.xlsx'  # Your Excel file name
 df = pd.read_excel(excel_file)
 
-# Assuming the Excel file has columns named 'new_title' and 'NameXml'
-# 'ParentQuest' contains the new quest titles and 'NameXml' contains the names of the XML files
+# Assuming the Excel file has columns named 'new_title' and 'QuestXml'
+# 'ParentQuest' contains the new quest titles and 'QuestXml' contains the names of the XML files
 titles = df['CloseQuest']
-xml_files = df['NameXml']
+xml_files = df['QuestXml']
 
 
 # Iterate through each title and corresponding XML file

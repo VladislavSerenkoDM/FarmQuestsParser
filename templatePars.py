@@ -28,7 +28,7 @@ quest_type_to_template = {
 # Process each row in the dataframe
 for _, row in df.iterrows():
     quest_type = row['QuestType']
-    quest_name = row['Name']
+    quest_name = row['QuestID']
     
     # Get the corresponding template file
     template_file = quest_type_to_template.get(quest_type)

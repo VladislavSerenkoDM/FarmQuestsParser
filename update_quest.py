@@ -16,8 +16,8 @@ df = pd.read_excel(excel_file)
 
 # Assuming the Excel file has columns named 'new_title' and 'xml_file'
 # 'new_title' contains the new quest titles and 'xml_file' contains the names of the XML files
-titles = df['new_title']
-xml_files = df['NameXml']
+titles = df['QuestTitle']
+xml_files = df['QuestXml']
 
 # Iterate through each title and corresponding XML file
 for new_title, xml_filename in zip(titles, xml_files):

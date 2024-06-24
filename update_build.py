@@ -14,11 +14,11 @@ os.makedirs(output_dir, exist_ok=True)
 excel_file = 'quest_data.xlsx'  # Your Excel file name
 df = pd.read_excel(excel_file)
 
-# Assuming the Excel file has columns named 'CloseQuest', 'NameXml', and 'Resource'
-# 'CloseQuest' contains the new quest titles, 'NameXml' contains the names of the XML files,
+# Assuming the Excel file has columns named 'CloseQuest', 'QuestXml', and 'Resource'
+# 'CloseQuest' contains the new quest titles, 'QuestXml' contains the names of the XML files,
 # and 'Resource' indicates whether the XML file should be processed
 titles = df['Amount']
-xml_files = df['NameXml']
+xml_files = df['QuestXml']
 UiD = df['UiD_Old']
 ground = df['SwitchObject']
 

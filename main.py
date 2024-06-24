@@ -4,7 +4,7 @@ import subprocess
 import sys
 import importlib.util
 
-# List of python scripts to choose from
+# List of python scripts to choose from 
 scripts = [
     "templatePars.py",
     "udpate_close.py",
@@ -13,7 +13,9 @@ scripts = [
     "update_collect.py",
     "update_craft.py",
     "update_parent.py",
-    "update_quest.py"
+    "update_quest.py",
+    "remember_columns.py",
+    "update_columns.py"
 ]
 
 def check_and_install_module(module_name):

@@ -1,6 +1,8 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from openpyxl import load_workbook
+import os
+
 
 scopes = ["https://www.googleapis.com/auth/spreadsheets" , "https://www.googleapis.com/auth/drive"]
 creds = Credentials.from_service_account_file("credentials.json", scopes=scopes)
@@ -70,3 +72,13 @@ attached_columns_indices = [7, 8, 9, 12, 13, 17, 18, 23]  # Example: Attach the 
 
 # Call the function to update the attached columns
 update_columns(worksheet, initial_master_column_data, current_master_column_data, attached_columns_indices)
+
+file_path = "master_column_initial_state.xlsx"
+
+try:
+    os.remove(file_path)
+    print(f"{file_path} has been removed successfully")
+except FileNotFoundError:
+    print(f"{file_path} does not exist")
+except Exception as e:
+    print(f"Error: {e}")
