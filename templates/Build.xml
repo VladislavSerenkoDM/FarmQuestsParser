@@ -7,7 +7,7 @@
 	<activate type="boolAnd">
 		<ptr>
 			<conditions type="eventStateConditionValue">
-				<ptr eventId="FarmLocation4">
+				<ptr eventId="FarmLocation5">
 					<states _v_="InProgress" />
 				</ptr>
 			</conditions>
@@ -27,7 +27,7 @@
 				<ptr onceTrigger="true" trigger="REPLACEME_Close" />
 			</conditions>
 			<conditions type="triggerCondition">
-				<ptr trigger="Farm4_SessionStart" />
+				<ptr trigger="Farm5_SessionStart" />
 			</conditions>
 		</ptr>
 	</close>
@@ -45,7 +45,7 @@
 		<ptr>
 			<nested type="contextAssetProvider">
 				<ptr>
-					<asset id="Farm4_GlobalContext" id..editor..ref="assetType@variablesContextAsset" />
+					<asset id="Farm5_GlobalContext" id..editor..ref="assetType@variablesContextAsset" />
 				</ptr>
 			</nested>
 			<nested type="contextAssetProvider">
@@ -55,7 +55,7 @@
 			</nested>
 			<nested type="contextAssetProvider">
 				<ptr>
-					<asset id="Farm4_InventoryContext" id..editor..ref="assetType@variablesContextAsset" />
+					<asset id="Farm5_InventoryContext" id..editor..ref="assetType@variablesContextAsset" />
 				</ptr>
 			</nested>
 		</ptr>
@@ -63,7 +63,7 @@
 	<dataContext type="varsContext">
 		<ptr>
 			<values type="stringVariable">
-				<ptr name="title" value="Farm4__REPLACEME" />
+				<ptr name="title" value="Farm5__REPLACEME" />
 			</values>
 			<values type="stringVariable">
 				<ptr name="description" value="Test1" />
@@ -72,7 +72,7 @@
 				<ptr name="tabletIcon" value="Farm3_UI_Quest_sawmill_icon_REPLACEME" />
 			</values>
 			<values type="stringVariable">
-				<ptr name="QuestIconId" value="Farm4_UI_Quest_REPLACEME" />
+				<ptr name="QuestIconId" value="Farm5_UI_Quest_REPLACEME" />
 			</values>
 			<values type="stringVariable">
 				<ptr name="QuestIconActive" />
@@ -108,7 +108,7 @@
 				<ptr name="QuestLocation1" value="REPLACEME_UiD" />
 			</values>
 			<values type="stringVariable">
-				<ptr name="QuestShowPathIcsName" value="Farm4_OpenUpgradeBuildingWindow" />
+				<ptr name="QuestShowPathIcsName" value="Farm5_OpenUpgradeBuildingWindow" />
 			</values>
 			<values type="stringVariable">
 				<ptr name="QuestType" value="Building" />
@@ -135,26 +135,26 @@
 		<ptr onEndTrigger="REPLACEME_Close">
 			<queueActions type="Farm.RequiredQueueQuestActionWrapper">
 				<ptr uniqueActionId="29122023-134659-4WmF8lAeSynNzA9Z">
-					<eventRef eventId="FarmLocation4" />
+					<eventRef eventId="FarmLocation5" />
 					<requiredAction type="farmingLocationIncreaseExperienceAction">
 						<ptr experienceScores="15_REPLACEME">
-							<eventRef eventId="FarmLocation4" />
+							<eventRef eventId="FarmLocation5" />
 						</ptr>
 					</requiredAction>
-					<startConditionAsset id="Farm4_IncreaseScoreNotActiveCondition" id..editor..ref="assetType@conditionAsset" />
+					<startConditionAsset id="Farm5_IncreaseScoreNotActiveCondition" id..editor..ref="assetType@conditionAsset" />
 				</ptr>
 			</queueActions>
 			<queueActions type="Farm.RequiredQueueQuestActionWrapper">
 				<ptr uniqueActionId="03012024-205113-RVqdVJyUGKrst3PC">
-					<eventRef eventId="FarmLocation4" />
+					<eventRef eventId="FarmLocation5" />
 					<requiredAction type="startScreenplayQuestAction">
 						<ptr canRestart="false" optional="false" waitForStableGarden="false">
-							<screenplayGroup groupId="Farm4">
-								<settings clusterId="clusterFarm4" screenplayId="" />
+							<screenplayGroup groupId="Farm5">
+								<settings clusterId="clusterFarm5" screenplayId="" />
 							</screenplayGroup>
 						</ptr>
 					</requiredAction>
-					<startConditionAsset id="Farm4_ScreenplayActivatePermissionCondition" id..editor..ref="assetType@conditionAsset" />
+					<startConditionAsset id="Farm5_ScreenplayActivatePermissionCondition" id..editor..ref="assetType@conditionAsset" />
 				</ptr>
 			</queueActions>
 		</ptr>
@@ -162,5 +162,5 @@
 	<onComplete type="saveCurrentState">
 		<ptr />
 	</onComplete>
-	<parentQuests id="07_Farm4_ClearCar" id..editor..ref="assetType@questTemplateData" />
+	<parentQuests id="07_Farm5_ClearCar" id..editor..ref="assetType@questTemplateData" />
 </asset>

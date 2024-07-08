@@ -58,17 +58,11 @@ wb = load_workbook("master_column_initial_state.xlsx")
 ws = wb["InitialState"]
 initial_master_column_data = [cell.value for cell in ws['A']]
 
-# Debug print
-print(f"Initial Master Column Data Loaded: {initial_master_column_data}")
-
 # Get the current state of the master column
 current_master_column_data = get_column_data(worksheet, master_column_number)
 
-# Debug print
-print(f"Current Master Column Data: {current_master_column_data}")
-
 # Define the attached columns numbers (1-based index)
-attached_columns_indices = [7, 8, 9, 12, 13, 17, 18, 23]  # Example: Attach the second and third columns
+attached_columns_indices = [7, 8, 9, 12, 13, 17, 18, 19, 24, 25]  # Example: Attach the second and third columns
 
 # Call the function to update the attached columns
 update_columns(worksheet, initial_master_column_data, current_master_column_data, attached_columns_indices)

@@ -48,7 +48,6 @@ for new_title, xml_filename, resource, workshop in zip(titles, xml_files, resour
 
     '''
 
-    new_title = int(new_title)
     new_title = str(new_title)
     
     # Find the <ptr> element with the name attribute set to "onceTrigger" and update its value
@@ -66,8 +65,12 @@ for new_title, xml_filename, resource, workshop in zip(titles, xml_files, resour
     for ptr in root.xpath(".//ptr[@name='QuestLocationCraftRecipe']"):
         ptr.attrib['value'] = resource   
 
-    for ptr in root.xpath(".//ptr[@name='QuestLocation1']"):
-        ptr.attrib['value'] = workshop           
+ # Handle 'QuestLocation1' attribute setting, checking for NaN
+    if pd.notna(workshop):
+        for ptr in root.xpath(".//ptr[@name='QuestLocation1']"):
+            ptr.attrib['value'] = workshop
+    else:
+        print(f"Skipping setting 'QuestLocation1' for file '{xml_filename}' because 'Workshop' is empty.")          
 
     # Iterate over all elements in the XML tree to find onEndTrigger attribute
     #    ___________________Complete___________________

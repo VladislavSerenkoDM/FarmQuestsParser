@@ -16,8 +16,6 @@ master_column_number = 2
 # Get the current state of the Master column
 master_column_data = worksheet.col_values(master_column_number)
 
-# Debug print
-print(f"Initial Master Column Data: {master_column_data}")
 
 # Save the initial state to an Excel file
 wb = Workbook()

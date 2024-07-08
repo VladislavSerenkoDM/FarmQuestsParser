@@ -6,16 +6,17 @@ import importlib.util
 
 # List of python scripts to choose from 
 scripts = [
+    "update_parent.py",
     "templatePars.py",
     "udpate_close.py",
     "udpate_experience.py",
     "update_build.py",
     "update_collect.py",
     "update_craft.py",
-    "update_parent.py",
     "update_quest.py",
     "remember_columns.py",
-    "update_columns.py"
+    "update_columns.py",
+    "download_excell.py"
 ]
 
 def check_and_install_module(module_name):

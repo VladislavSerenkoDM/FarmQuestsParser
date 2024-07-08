@@ -7,7 +7,7 @@
 	<activate type="boolAnd">
 		<ptr>
 			<conditions type="eventStateConditionValue">
-				<ptr eventId="FarmLocation4">
+				<ptr eventId="FarmLocation5">
 					<states _v_="InProgress" />
 				</ptr>
 			</conditions>
@@ -16,7 +16,7 @@
 			</conditions>
 			<conditions type="questInStateCondition">
 				<ptr state="Closed">
-					<quest id="08_Farm4_BuildFirewatchTower_REPLACEME" id..editor..ref="assetType@questTemplateData" />
+					<quest id="08_Farm5_BuildFirewatchTower_REPLACEME" id..editor..ref="assetType@questTemplateData" />
 				</ptr>
 			</conditions>
 		</ptr>
@@ -24,10 +24,10 @@
 	<close type="boolOr">
 		<ptr>
 			<conditions type="triggerCondition">
-				<ptr onceTrigger="true" trigger="Farm4_CollectCampfireBranches_Close_REPLACEME" />
+				<ptr onceTrigger="true" trigger="Farm5_CollectCampfireBranches_Close_REPLACEME" />
 			</conditions>
 			<conditions type="triggerCondition">
-				<ptr trigger="Farm4_SessionStart" />
+				<ptr trigger="Farm5_SessionStart" />
 			</conditions>
 		</ptr>
 	</close>
@@ -37,7 +37,7 @@
 				<ptr name="Farm_IsInCluster" />
 			</conditions>
 			<conditions type="farmingLocationQuestCounterCondition">
-				<ptr goalName="Farm4_Branches_REPLACEME" requiredValue="10_REPLACEME" />
+				<ptr goalName="Farm5_Branches_REPLACEME" requiredValue="10_REPLACEME" />
 			</conditions>
 		</ptr>
 	</complete>
@@ -45,7 +45,7 @@
 		<ptr>
 			<nested type="contextAssetProvider">
 				<ptr>
-					<asset id="Farm4_GlobalContext" id..editor..ref="assetType@variablesContextAsset" />
+					<asset id="Farm5_GlobalContext" id..editor..ref="assetType@variablesContextAsset" />
 				</ptr>
 			</nested>
 			<nested type="contextAssetProvider">
@@ -55,7 +55,7 @@
 			</nested>
 			<nested type="contextAssetProvider">
 				<ptr>
-					<asset id="Farm4_InventoryContext" id..editor..ref="assetType@variablesContextAsset" />
+					<asset id="Farm5_InventoryContext" id..editor..ref="assetType@variablesContextAsset" />
 				</ptr>
 			</nested>
 		</ptr>
@@ -63,7 +63,7 @@
 	<dataContext type="varsContext">
 		<ptr>
 			<values type="stringVariable">
-				<ptr name="title" value="Farm4_quest10_REPLACEME" />
+				<ptr name="title" value="Farm5_quest10_REPLACEME" />
 			</values>
 			<values type="stringVariable">
 				<ptr name="description" value="Test1" />
@@ -99,10 +99,10 @@
 				<ptr name="GoalRequired_Str" value="10_REPLACEME" />
 			</values>
 			<values type="stringVariable">
-				<ptr name="GoalName" value="Farm4_Branches_REPLACEME" />
+				<ptr name="GoalName" value="Farm5_Branches_REPLACEME" />
 			</values>
 			<values type="stringVariable">
-				<ptr name="QuestLocationResources" value="Farm4_Branches_REPLACEME" />
+				<ptr name="QuestLocationResources" value="Farm5_Branches_REPLACEME" />
 			</values>
 			<values type="stringVariable">
 				<ptr name="QuestType" value="FarmResource" />
@@ -120,29 +120,29 @@
 		<ptr />
 	</onClose>
 	<onComplete type="queueQuestAction">
-		<ptr customLocation="FarmingLocation" onEndTrigger="Farm4_CollectCampfireBranches_Close_REPLACEME">
+		<ptr customLocation="FarmingLocation" onEndTrigger="Farm5_CollectCampfireBranches_Close_REPLACEME">
 			<queueActions type="Farm.RequiredQueueQuestActionWrapper">
 				<ptr uniqueActionId="29122023-134700-acjAya6XGZrPmCbb">
-					<eventRef eventId="FarmLocation4" />
+					<eventRef eventId="FarmLocation5" />
 					<requiredAction type="farmingLocationIncreaseExperienceAction">
 						<ptr experienceScores="15">
-							<eventRef eventId="FarmLocation4" />
+							<eventRef eventId="FarmLocation5" />
 						</ptr>
 					</requiredAction>
-					<startConditionAsset id="Farm4_IncreaseScoreNotActiveCondition" id..editor..ref="assetType@conditionAsset" />
+					<startConditionAsset id="Farm5_IncreaseScoreNotActiveCondition" id..editor..ref="assetType@conditionAsset" />
 				</ptr>
 			</queueActions>
 			<queueActions type="Farm.RequiredQueueQuestActionWrapper">
 				<ptr uniqueActionId="29122023-134700-kZ4z50YuZjUuNQy8">
-					<eventRef eventId="FarmLocation4" />
+					<eventRef eventId="FarmLocation5" />
 					<requiredAction type="startScreenplayQuestAction">
 						<ptr canRestart="false" optional="false" waitForStableGarden="false">
-							<screenplayGroup groupId="Farm4">
-								<settings clusterId="clusterFarm4" screenplayId="" />
+							<screenplayGroup groupId="Farm5">
+								<settings clusterId="clusterFarm5" screenplayId="" />
 							</screenplayGroup>
 						</ptr>
 					</requiredAction>
-					<startConditionAsset id="Farm4_ScreenplayActivatePermissionCondition" id..editor..ref="assetType@conditionAsset" />
+					<startConditionAsset id="Farm5_ScreenplayActivatePermissionCondition" id..editor..ref="assetType@conditionAsset" />
 				</ptr>
 			</queueActions>
 		</ptr>
@@ -150,5 +150,5 @@
 	<onComplete type="saveCurrentState">
 		<ptr />
 	</onComplete>
-	<parentQuests id="08_Farm4_BuildFirewatchTower" id..editor..ref="assetType@questTemplateData" />
+	<parentQuests id="08_Farm5_BuildFirewatchTower" id..editor..ref="assetType@questTemplateData" />
 </asset>

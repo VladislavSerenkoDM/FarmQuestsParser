@@ -17,17 +17,16 @@ os.makedirs(input_dir, exist_ok=True)
 
 # Mapping quest types to template files
 quest_type_to_template = {
-    'BuildDecor': 'Build.xml',
-    'BuildWorkshop': 'Build.xml',
+    'Build': 'Build.xml',
     'Clear': 'Clear.xml',
     'Collect': 'Collect.xml',
     'StartCraft': 'StartCraft.xml',
-    'CraftResources': 'Craft.xml',
+    'Craft': 'Craft.xml',
 }
 
 # Process each row in the dataframe
 for _, row in df.iterrows():
-    quest_type = row['QuestType']
+    quest_type = row['UniqueQuestType'] if pd.notna(row['UniqueQuestType']) else row['QuestType']
     quest_name = row['QuestID']
     
     # Get the corresponding template file

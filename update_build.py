@@ -14,19 +14,16 @@ os.makedirs(output_dir, exist_ok=True)
 excel_file = 'quest_data.xlsx'  # Your Excel file name
 df = pd.read_excel(excel_file)
 
-# Assuming the Excel file has columns named 'CloseQuest', 'QuestXml', and 'Resource'
-# 'CloseQuest' contains the new quest titles, 'QuestXml' contains the names of the XML files,
-# and 'Resource' indicates whether the XML file should be processed
-titles = df['Amount']
+
 xml_files = df['QuestXml']
 UiD = df['UiD_Old']
 ground = df['SwitchObject']
 
 
 # Iterate through each title and corresponding XML file
-for new_title, xml_filename, resource, ground  in zip(titles, xml_files, UiD, ground):
-    # Skip rows where 'Resource' is empty
-    if pd.isna(resource):
+for xml_filename, building, ground  in zip( xml_files, UiD, ground):
+    # Skip rows where 'building' is empty
+    if pd.isna(building):
         print(f"Skipping file '{xml_filename}' because 'UiD_Old' is empty.")
         continue
     
@@ -50,14 +47,14 @@ for new_title, xml_filename, resource, ground  in zip(titles, xml_files, UiD, gr
     '''
 
  
-    resource = str(resource)
+    building = str(building)
     ground = str(ground)
     
     # Find the <ptr> element with the name attribute set to "onceTrigger" and update its value
     #    ___________________Data Context___________________
 
     for ptr in root.xpath(".//ptr[@name='QuestLocation1']"):
-        ptr.attrib['value'] = resource           
+        ptr.attrib['value'] = building           
 
     # Iterate over all elements in the XML tree to find onEndTrigger attribute
     #    ___________________Complete___________________
@@ -68,13 +65,13 @@ for new_title, xml_filename, resource, ground  in zip(titles, xml_files, UiD, gr
             # Check if the attribute value matches the old_value
             if attr_name == 'objectId':
                 # Replace the attribute value with the new_value
-                elem.set(attr_name, resource)
+                elem.set(attr_name, building)
 
     # Iterate over all elements in the XML tree to find onEndTrigger attribute
     #    ___________________Complete_For_StartCraft___________________
 
     for quest in root.findall(".//recipe"):
-            quest.set('id', resource)
+            quest.set('id', building)
 
     for elem in root.iter():
     # Iterate over all attributes of the element
@@ -106,7 +103,7 @@ for new_title, xml_filename, resource, ground  in zip(titles, xml_files, UiD, gr
         # Write the rest of the XML content
         file.write(xml_str)
 
-    print(f"The quest title has been updated to '{new_title}' in '{updated_xml_file_path}'.")
+    print(f"The quest title has been updated to '{building}' in '{updated_xml_file_path}'.")
 
 print("All quest titles have been updated.")
 

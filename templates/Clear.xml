@@ -7,7 +7,7 @@
 	<activate type="boolAnd">
 		<ptr>
 			<conditions type="eventStateConditionValue">
-				<ptr eventId="FarmLocation4">
+				<ptr eventId="FarmLocation5">
 					<states _v_="InProgress" />
 				</ptr>
 			</conditions>
@@ -16,7 +16,7 @@
 			</conditions>
 			<conditions type="questInStateCondition">
 				<ptr state="Closed">
-					<quest id="Farm4_GroupComplete1_REPLACEME" id..editor..ref="assetType@questTemplateData" />
+					<quest id="Farm5_GroupComplete1_REPLACEME" id..editor..ref="assetType@questTemplateData" />
 				</ptr>
 			</conditions>
 		</ptr>
@@ -24,10 +24,10 @@
 	<close type="boolOr">
 		<ptr>
 			<conditions type="triggerCondition">
-				<ptr onceTrigger="true" trigger="Farm4_ClearSawmillArea_Close_REPLACEME" />
+				<ptr onceTrigger="true" trigger="Farm5_ClearSawmillArea_Close_REPLACEME" />
 			</conditions>
 			<conditions type="triggerCondition">
-				<ptr trigger="Farm4_SessionStart" />
+				<ptr trigger="Farm5_SessionStart" />
 			</conditions>
 		</ptr>
 	</close>
@@ -48,7 +48,7 @@
 		<ptr>
 			<nested type="contextAssetProvider">
 				<ptr>
-					<asset id="Farm4_GlobalContext" id..editor..ref="assetType@variablesContextAsset" />
+					<asset id="Farm5_GlobalContext" id..editor..ref="assetType@variablesContextAsset" />
 				</ptr>
 			</nested>
 			<nested type="contextAssetProvider">
@@ -58,7 +58,7 @@
 			</nested>
 			<nested type="contextAssetProvider">
 				<ptr>
-					<asset id="Farm4_InventoryContext" id..editor..ref="assetType@variablesContextAsset" />
+					<asset id="Farm5_InventoryContext" id..editor..ref="assetType@variablesContextAsset" />
 				</ptr>
 			</nested>
 		</ptr>
@@ -66,7 +66,7 @@
 	<dataContext type="varsContext">
 		<ptr>
 			<values type="stringVariable">
-				<ptr name="title" value="Farm4_quest21_REPLACEME" />
+				<ptr name="title" value="Farm5_quest21_REPLACEME" />
 			</values>
 			<values type="stringVariable">
 				<ptr name="description" value="Test1" />
@@ -139,29 +139,29 @@
 		<ptr />
 	</onClose>
 	<onComplete type="queueQuestAction">
-		<ptr onEndTrigger="Farm4_ClearSawmillArea_Close_REPLACEME">
+		<ptr onEndTrigger="Farm5_ClearSawmillArea_Close_REPLACEME">
 			<queueActions type="Farm.RequiredQueueQuestActionWrapper">
 				<ptr uniqueActionId="29122023-134707-vqzDiXA1mtRcKk8S">
-					<eventRef eventId="FarmLocation4" />
+					<eventRef eventId="FarmLocation5" />
 					<requiredAction type="farmingLocationIncreaseExperienceAction">
 						<ptr experienceScores="10_REPLACEME">
-							<eventRef eventId="FarmLocation4" />
+							<eventRef eventId="FarmLocation5" />
 						</ptr>
 					</requiredAction>
-					<startConditionAsset id="Farm4_IncreaseScoreNotActiveCondition" id..editor..ref="assetType@conditionAsset" />
+					<startConditionAsset id="Farm5_IncreaseScoreNotActiveCondition" id..editor..ref="assetType@conditionAsset" />
 				</ptr>
 			</queueActions>
 			<queueActions type="Farm.RequiredQueueQuestActionWrapper">
 				<ptr uniqueActionId="29122023-134700-kZ4z50YuZjUuNQy8">
-					<eventRef eventId="FarmLocation4" />
+					<eventRef eventId="FarmLocation5" />
 					<requiredAction type="startScreenplayQuestAction">
 						<ptr canRestart="false" optional="false" waitForStableGarden="false">
-							<screenplayGroup groupId="Farm4">
-								<settings clusterId="clusterFarm4" screenplayId="" />
+							<screenplayGroup groupId="Farm5">
+								<settings clusterId="clusterFarm5" screenplayId="" />
 							</screenplayGroup>
 						</ptr>
 					</requiredAction>
-					<startConditionAsset id="Farm4_ScreenplayActivatePermissionCondition" id..editor..ref="assetType@conditionAsset" />
+					<startConditionAsset id="Farm5_ScreenplayActivatePermissionCondition" id..editor..ref="assetType@conditionAsset" />
 				</ptr>
 			</queueActions>
 		</ptr>
@@ -169,5 +169,5 @@
 	<onComplete type="saveCurrentState">
 		<ptr />
 	</onComplete>
-	<parentQuests id="Farm4_GroupComplete1" id..editor..ref="assetType@questTemplateData" />
+	<parentQuests id="Farm5_GroupComplete1" id..editor..ref="assetType@questTemplateData" />
 </asset>

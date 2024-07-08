@@ -20,8 +20,13 @@ titles = df['CloseQuest']
 xml_files = df['QuestXml']
 
 
+
 # Iterate through each title and corresponding XML file
 for new_title, xml_filename in zip(titles, xml_files):
+
+    if pd.isna(new_title) or pd.isna(xml_filename):
+            continue
+
     # Construct the full path to the XML file in the input directory
     xml_file_path = os.path.join(input_dir, xml_filename)
     
@@ -40,7 +45,6 @@ for new_title, xml_filename in zip(titles, xml_files):
     ___________________Searching and replacing values block___________________
 
     '''
-
     
     # Find the <ptr> element with the name attribute set to "onceTrigger" and update its value
     for ptr in root.xpath(".//ptr[@onceTrigger='true']"):

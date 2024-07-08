@@ -10,14 +10,20 @@ spreadsheet = client.open('Farm5. Айди квестов')
 worksheet = spreadsheet.worksheet('Farm5')
 
 
-# Get all the records of the data
-records_data = worksheet.get_all_records()
+# Fetch all the values from the worksheet
+all_values = worksheet.get_all_values()
 
-# Convert the json to dataframe
-records_df = pd.DataFrame.from_dict(records_data)
+# Use the second row as the headers
+headers = all_values[1]
 
-# Display the dataframe
+# Use the remaining rows as the data
+data = all_values[2:]
+
+# Convert the data to a DataFrame
+records_df = pd.DataFrame(data, columns=headers)
+
+# Display the DataFrame
 print(records_df)
 
-# Save the dataframe to an Excel file
+# Save the DataFrame to an Excel file
 records_df.to_excel('quest_data.xlsx', index=False)
